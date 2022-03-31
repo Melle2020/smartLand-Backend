@@ -2,20 +2,20 @@
 import { TezosToolkit } from '@taquito/taquito';
 import { InMemorySigner } from '@taquito/signer';
 import * as faucet from '../ithacanet.json';
-const coordGeo = "12*12*88";
-     const dateNaissance = "12-12-2022";
-               const idCni="1131313";
-               const idNumeroT="11123445";
-               const lieuNaissance= "Bonaberi";
-         const       limite= "120*656";
-        const         local="Douala";
-         const       noms= "Kevin";
-            const     prenoms= "Jane"
+
+     
 
 export class App {
     private tezos: TezosToolkit;
-    
-
+     coordGeo = "12*12*88";
+     dateNaissance = "12-12-2022";
+     idCni="1131313";
+     idNumeroT="1000000";
+     lieuNaissance= "Bonaberi";
+     limite= "120*656";
+     local="Douala";
+     noms= "AZiz2";
+     prenoms= "Armelle2"
 
     constructor(rpcUrl: string) {
         this.tezos = new TezosToolkit(rpcUrl);
@@ -41,21 +41,44 @@ export class App {
             .catch((error) => console.log(`Error: ${error}`));
     }
 
-    public addterrain(contract: string) {
+    // public addterrain(terrain:any,contract: string) {
+    //     this.tezos.contract
+    //         .at(contract) // step 1
+    //         .then((contract) => {
+
+    //             console.log(`Add new Land Title ...`);
+    //             return contract.methods.addterrain( coordGeo ,
+    //             dateNaissance,
+    //         idCni,
+    //             idNumeroT,
+    //             lieuNaissance,
+    //             limite,
+    //             local,
+    //             noms,
+    //             prenoms).send(); // steps 2, 3 and 4
+    //             })
+    //         .then((op) => {
+    //             console.log(`Awaiting for ${op.hash} to be confirmed...`);
+    //             return op.confirmation(3).then(() => op.hash); // step 5
+    //         })
+    //         .then((hash) => console.log(`Operation injected: https://ithacanet.smartpy.io/${hash}`))
+    //         .catch((error) => console.log(`Error: ${JSON.stringify(error, null, 2)}`,error));
+    // }
+    public addterrain(terrain:any,contract: string) {
         this.tezos.contract
             .at(contract) // step 1
             .then((contract) => {
 
                 console.log(`Add new Land Title ...`);
-                return contract.methods.addterrain( coordGeo ,
-                dateNaissance,
-            idCni,
-                idNumeroT,
-                lieuNaissance,
-                limite,
-                local,
-                noms,
-                prenoms).send(); // steps 2, 3 and 4
+                return contract.methods.addterrain( this.coordGeo ,
+                this.dateNaissance,
+            this.idCni,
+                this.idNumeroT,
+                this.lieuNaissance,
+                this.limite,
+                this.local,
+                this.noms,
+                this.prenoms).send(); // steps 2, 3 and 4
                 })
             .then((op) => {
                 console.log(`Awaiting for ${op.hash} to be confirmed...`);
