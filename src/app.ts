@@ -64,43 +64,34 @@ export class App {
     //         .then((hash) => console.log(`Operation injected: https://ithacanet.smartpy.io/${hash}`))
     //         .catch((error) => console.log(`Error: ${JSON.stringify(error, null, 2)}`,error));
     // }
-    public addterrain(terrain:any,contract: string) {
+    public addterrain(terrain:any,contract: string):any {
         this.tezos.contract
             .at(contract) // step 1
             .then((contract) => {
-
                 console.log(`Add new Land Title ...`);
-                return contract.methods.addterrain( this.coordGeo ,
-                this.dateNaissance,
-            this.idCni,
-                this.idNumeroT,
-                this.lieuNaissance,
-                this.limite,
-                this.local,
-                this.noms,
-                this.prenoms).send(); // steps 2, 3 and 4
+                return contract.methods.addterrain( this.coordGeo=terrain?.coordGeo ,
+                this.dateNaissance=terrain?.dateNaissance,
+                this.idCni=terrain?.idCni,
+                this.idNumeroT=terrain?.idNumeroT,
+                this.lieuNaissance=terrain?.lieuNaissance,
+                this.limite=terrain?.limite,
+                this.local=terrain?.local,
+                this.noms=terrain?.noms,
+                this.prenoms=terrain?.prenoms).send(); // steps 2, 3 and 4
                 })
             .then((op) => {
                 console.log(`Awaiting for ${op.hash} to be confirmed...`);
                 return op.confirmation(3).then(() => op.hash); // step 5
             })
-            .then((hash) => console.log(`Operation injected: https://ithacanet.smartpy.io/${hash}`))
-            .catch((error) => console.log(`Error: ${JSON.stringify(error, null, 2)}`,error));
+            .then((hash) => {console.log(`Operation injected: https://ithacanet.smartpy.io/${hash}`); return hash})
+            .catch((error) =>{ console.log(`Error: ${JSON.stringify(error, null, 2)}`,error);return error});
     }
-    public getAllTitrefoncier(  contract: string) {
-        this.tezos.contract
-            .at(contract) // step 1
-            .then((contract) => {
+    public async getAllTitrefoncier(contract: string) {
+       
+ 
+    }
 
-                console.log(`Incrementing storage value by ...`);
-                return contract.methods.getAllTitrefoncier().send(); // steps 2, 3 and 4
-                })
-            .then((op) => {
-                console.log(`Awaiting for ${op.hash} to be confirmed...`);
-                return op.confirmation(3).then(() => op.hash); // step 5
-            })
-            .then((hash) => console.log(`Operation injected: https://ithacanet.smartpy.io/${hash}`))
-            .catch((error) => console.log(`Error: ${JSON.stringify(error, null, 2)}`,error));
-    }
+
+    
     public async main() { }
 }
