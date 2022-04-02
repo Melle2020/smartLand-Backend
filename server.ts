@@ -15,7 +15,7 @@ const COUNTER_CONTRACT = "KT1LmvMf9iki8J4u7rdQDEFYBkAh9onuThAX";
 const app: Express = express();
 
 //Port de connection
-const port = 3000;
+const port = process.env.PORT|| 3000;
 app.use(cors())
 
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -62,7 +62,7 @@ app.post('/addTerrain',  (req:Request, res: Response) => {
 });
 
 
-app.post('/allTerrain',  (req:Request, res: Response) => {
+app.get('/allTerrain',  (req:Request, res: Response) => {
 
     new App(RPC_URL).getAllTitrefoncier(COUNTER_CONTRACT)
   

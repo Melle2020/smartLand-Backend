@@ -86,12 +86,14 @@ export class App {
             .then((hash) => {console.log(`Operation injected: https://ithacanet.smartpy.io/${hash}`); return hash})
             .catch((error) =>{ console.log(`Error: ${JSON.stringify(error, null, 2)}`,error);return error});
     }
-    public async getAllTitrefoncier(contract: string) {
-       
- 
+    public async getAllTitrefoncier(contractKey: string) {
+        
+        const contract = await this.tezos.wallet.at("KT1LmvMf9iki8J4u7rdQDEFYBkAh9onuThAX");
+        const storage = await contract.storage()
+        console.log('stockage',storage)
     }
 
 
-    
+
     public async main() { }
 }
