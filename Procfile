@@ -1,1 +1,1 @@
-web: npx ts node
+web: npx ts-node server.ts
