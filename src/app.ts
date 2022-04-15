@@ -15,7 +15,7 @@ export class App {
      limite= "120*656";
      local="Douala";
      noms= "AZiz2";
-     prenoms= "Armelle2"
+     prenoms= "Armelle2" 
 
     constructor(rpcUrl: string) {
         this.tezos = new TezosToolkit(rpcUrl);
